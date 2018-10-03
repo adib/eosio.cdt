@@ -63,17 +63,6 @@ namespace eosio {
       return value;
    }
 
-   /**
-    * Used to generate a compile time uint64_t from the base32 encoded string interpretation of X
-    *
-    * @brief Used to generate a compile time uint64_t from the base32 encoded string interpretation of X
-    * @param X - String representation of the name
-    * @return constexpr uint64_t - 64-bit unsigned integer representation of the name
-    * @ingroup types
-    */
-   #define N(X) ::eosio::string_to_name(#X)
-
-
    static constexpr uint64_t name_suffix( uint64_t n ) {
       uint32_t remaining_bits_after_last_actual_dot = 0;
       uint32_t tmp = 0;
@@ -154,7 +143,7 @@ namespace eosio {
        *
        * @brief Internal Representation of the account name
        */
-      account_name value = 0;
+      capi_name value = 0;
 
    private:
       static void trim_right_dots(std::string& str ) {
@@ -164,6 +153,10 @@ namespace eosio {
       }
    };
 
+   typedef name permission_name;
+   typedef name table_name;
+   typedef name action_name;
+   typedef name scope_name;
 } // namespace eosio
 
 namespace std {
@@ -189,7 +182,7 @@ namespace std {
  * @return true - if equal
  * @return false - if unequal
  */
-inline bool operator==(const checksum256& lhs, const checksum256& rhs) {
+inline bool operator==(const capi_checksum256& lhs, const capi_checksum256& rhs) {
    return memcmp(&lhs, &rhs, sizeof(lhs)) == 0;
 }
 
@@ -202,7 +195,7 @@ inline bool operator==(const checksum256& lhs, const checksum256& rhs) {
  * @return true - if equal
  * @return false - if unequal
  */
-inline bool operator==(const checksum160& lhs, const checksum160& rhs) {
+inline bool operator==(const capi_checksum160& lhs, const capi_checksum160& rhs) {
    return memcmp(&lhs, &rhs, sizeof(lhs)) == 0;
 }
 
@@ -215,7 +208,7 @@ inline bool operator==(const checksum160& lhs, const checksum160& rhs) {
  * @return true - if unequal
  * @return false - if equal
  */
-inline bool operator!=(const checksum160& lhs, const checksum160& rhs) {
+inline bool operator!=(const capi_checksum160& lhs, const capi_checksum160& rhs) {
    return memcmp(&lhs, &rhs, sizeof(lhs)) != 0;
 }
 

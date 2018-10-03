@@ -39,7 +39,7 @@ extern "C" {
      *  @endcode
      */
 
-    uint32_t get_active_producers( account_name* producers, uint32_t datalen );
+    uint32_t get_active_producers( capi_name* producers, uint32_t datalen );
 
    ///@ } chaincapi
 }

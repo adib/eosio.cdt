@@ -75,7 +75,7 @@ namespace eosio {
     *  @endcode
     */
    template<typename... accounts>
-   void require_recipient( account_name name, accounts... remaining_accounts ){
+   void require_recipient( name name, accounts... remaining_accounts ){
       require_recipient( name );
       require_recipient( remaining_accounts... );
    }
@@ -93,7 +93,7 @@ namespace eosio {
        * @param a - Name of the account who owns this authorization
        * @param p - Name of the permission
        */
-      permission_level( account_name a, permission_name p ):actor(a),permission(p){}
+      permission_level( name a, permission_name p ):actor(a),permission(p){}
 
       /**
        * Default Constructor
