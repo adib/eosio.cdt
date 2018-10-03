@@ -1,5 +1,5 @@
 #include <eosiolib/eosio.hpp>
-#include <eosiolib/optional.hpp>
+#include <optional>
 
 using namespace eosio;
 
@@ -21,6 +21,7 @@ namespace test {
    // mark this struct as an action and specify the name explicitly
    struct [[ eosio::action("testc") ]] test_c : testb {
       uint64_t num;
+      EOSLIB_SERIALIZE_DERIVED(test_c, testb, (num))
    };
 }
 
@@ -36,7 +37,7 @@ class test_contract : public eosio::contract {
       
       // mark this method as an action
       [[ eosio::action ]]
-      void testactb( test::test_c input, type_def td, optional<int> cc, bool d ) {
+      void testactb( test::test_c input, type_def td, std::optional<int> cc, bool d ) {
          print(input.num);
       }
       
